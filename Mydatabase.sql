@@ -16,6 +16,14 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Current Database: `IT635`
+--
+
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `IT635` /*!40100 DEFAULT CHARACTER SET latin1 */;
+
+USE `IT635`;
+
+--
 -- Table structure for table `Appointments`
 --
 
@@ -31,7 +39,7 @@ CREATE TABLE `Appointments` (
   PRIMARY KEY (`AppointID`),
   KEY `CarID` (`CarID`),
   CONSTRAINT `Appointments_ibfk_1` FOREIGN KEY (`CarID`) REFERENCES `Cars` (`CarID`)
-) ENGINE=InnoDB AUTO_INCREMENT=1003 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1009 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +48,7 @@ CREATE TABLE `Appointments` (
 
 LOCK TABLES `Appointments` WRITE;
 /*!40000 ALTER TABLE `Appointments` DISABLE KEYS */;
-INSERT INTO `Appointments` VALUES (1000,'Barney Stinson','2018-03-05','15:00:00',1),(1001,'Ted Bosby','2018-04-23','12:00:00',2),(1002,'Robin Scherbatsky','2018-04-25','11:00:00',3);
+INSERT INTO `Appointments` VALUES (1000,'Barney Stinson','2018-03-05','15:00:00',1),(1001,'Ted Bosby','2018-04-23','12:00:00',2),(1002,'Robin Scherbatsky','2018-04-25','11:00:00',3),(1007,'Mo Mazketly','2018-03-06','14:10:00',4),(1008,'Ben ','2018-03-12','14:11:00',1);
 /*!40000 ALTER TABLE `Appointments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -61,7 +69,7 @@ CREATE TABLE `Cars` (
   `SalesRep` varchar(20) DEFAULT NULL,
   `Age` int(10) DEFAULT NULL,
   PRIMARY KEY (`CarID`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70,7 +78,7 @@ CREATE TABLE `Cars` (
 
 LOCK TABLES `Cars` WRITE;
 /*!40000 ALTER TABLE `Cars` DISABLE KEYS */;
-INSERT INTO `Cars` VALUES (1,'Honda',2009,5000,'Lease',5000,'Rachel Green',29),(2,'Infiniti',2007,100000,'Purchase',20000,'Joey Tribbiani',32),(3,'Lexus',2015,0,'Purchase',50000,'Ross Geller',30),(4,'BMW',2013,30000,'Lease',15000,'Phoebe Buffay',26);
+INSERT INTO `Cars` VALUES (1,'Honda',2009,5000,'Lease',5000,'Rachel Green',29),(2,'Infiniti',2007,100000,'Purchase',20000,'Joey Tribbiani',32),(3,'Lexus',2015,0,'Purchase',50000,'Ross Geller',30),(4,'BMW',2013,30000,'Lease',15000,'Phoebe Buffay',26),(5,'Ford',2004,100000,'Lease',4000,'Ross Geller',30);
 /*!40000 ALTER TABLE `Cars` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -87,7 +95,7 @@ CREATE TABLE `Sales` (
   PRIMARY KEY (`SalesID`),
   KEY `AppointID` (`AppointID`),
   CONSTRAINT `Sales_ibfk_1` FOREIGN KEY (`AppointID`) REFERENCES `Appointments` (`AppointID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -96,6 +104,7 @@ CREATE TABLE `Sales` (
 
 LOCK TABLES `Sales` WRITE;
 /*!40000 ALTER TABLE `Sales` DISABLE KEYS */;
+INSERT INTO `Sales` VALUES (1,1000),(2,1008),(3,1008),(4,1008);
 /*!40000 ALTER TABLE `Sales` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -109,7 +118,7 @@ DROP TABLE IF EXISTS `Users`;
 CREATE TABLE `Users` (
   `UserID` int(10) NOT NULL AUTO_INCREMENT,
   `Name` varchar(20) DEFAULT NULL,
-  `Password` varchar(20) DEFAULT NULL,
+  `Password` varchar(256) DEFAULT NULL,
   `Title` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`UserID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
@@ -121,7 +130,7 @@ CREATE TABLE `Users` (
 
 LOCK TABLES `Users` WRITE;
 /*!40000 ALTER TABLE `Users` DISABLE KEYS */;
-INSERT INTO `Users` VALUES (1,'Barney Stinson','12345','Customer'),(2,'Rachel Green','12345','SalesRep');
+INSERT INTO `Users` VALUES (1,'Barney Stinson','$2y$10$M77CNkgFmVtXvlkWGyXxpeU1s9GFlXOU.MqO7x4ufnJr43gbqIKqy','Customer'),(2,'Rachel Green','$2y$10$M77CNkgFmVtXvlkWGyXxpeU1s9GFlXOU.MqO7x4ufnJr43gbqIKqy','SalesRep');
 /*!40000 ALTER TABLE `Users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -134,4 +143,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-19 18:54:34
+-- Dump completed on 2018-03-22 20:08:16
